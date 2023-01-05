@@ -244,7 +244,8 @@ td.expense{
 
 input {
     border: none;
-    border-radius: 0.2rem;
+    color: black;
+    border-radius: 0.3rem;
     padding: 0.8rem;
     width: 100%;
 }
@@ -277,6 +278,26 @@ footer{
     opacity: 0.6;
 }
 
+/*-------------------Input date ---------------------------- */
+
+.dateIcon{
+    color: var(--green)
+}
+
+.date-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    items-center: center;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
 /*-------------------Responsive---------------------------- */
 
 @media (min-width: 800px) {
@@ -289,4 +310,5 @@ footer{
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
     }
+    
 }

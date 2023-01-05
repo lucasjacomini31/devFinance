@@ -1,3 +1,4 @@
+
 const Modal = {
  
     openAndClose() {
