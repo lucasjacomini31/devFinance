@@ -1,6 +1,4 @@
-
 const Modal = {
- 
     openAndClose() {
         //abrir modal
         //adicionar a classe active ao modal
@@ -8,7 +6,23 @@ const Modal = {
             .querySelector('.modal-overlay')
             .classList
             .toggle('active')
-    }    
+    }, 
+    
+    divOpenAndClose(div){
+        if (div.getAttribute('value') == "income"){
+            DOM.addTitleDiv("Adicionar uma Entrada")
+            document.getElementById('typeInput').value = div.getAttribute('value')
+            Modal.openAndClose()
+        } 
+        else if(div.getAttribute('value') == "expense"){
+            DOM.addTitleDiv("Adicionar uma Saída")
+            document.getElementById('typeInput').value = div.getAttribute('value')
+            Modal.openAndClose()
+        }
+        else {
+            return
+        }
+    }
 }
 
 const Storage = {
@@ -105,6 +119,10 @@ const DOM = {
             .innerHTML = Utils.formatCurrency(Transaction.total())    
     },
 
+    addTitleDiv(title){
+        document.querySelector('#titleDiv').innerHTML = title
+    },
+
     clearTransactions(){
         DOM.transactionsContainer.innerHTML = ""
     }
@@ -137,12 +155,14 @@ const Form = {
     description: document.querySelector('input#description'),
     amount: document.querySelector('input#amount'),
     date: document.querySelector('input#date'),
+    typeInput: document.querySelector('input#typeInput'),
 
     getValues(){
         return {
             description: Form.description.value,
             amount: Form.amount.value,
-            date: Form.date.value
+            date: Form.date.value,
+            typeInput: Form.typeInput.value,
         }
     },
 
@@ -159,9 +179,21 @@ const Form = {
     },
 
     formatValues(){
-        let { description, amount, date} = Form.getValues()
+        let { description, amount, date, typeInput} = Form.getValues()
 
-        amount = Utils.formatAmount(amount)
+  
+        if (typeInput == "income"){
+            amount = Utils.formatAmount(amount)
+        }
+        else if(typeInput == "expense"){
+            amount = Utils.formatAmount(amount)
+            amount = -amount
+        }
+        else {
+            amount = Utils.formatAmount(amount)
+        }
+
+        //amount = Utils.formatAmount(amount)
         date = Utils.formatDate(date)
 
         return {
@@ -183,6 +215,7 @@ const Form = {
         try{
             //verificar se todas as informações foram preenchidas
             Form.validateField()
+
             //formatar os dados para salvar
             const transaction = Form.formatValues()
             //salvar e atualizar a aplicação
@@ -216,3 +249,4 @@ const App = {
 }
 
 App.init()
+

@@ -21,14 +21,14 @@
         <section id="balance">
             <h2 class="sr-only">Balanço</h2>
 
-            <div class="card">
+            <div class="card" value="income" onclick="Modal.divOpenAndClose(this)">
                 <h3>
                     <span>Entradas</span>
                     <img src="./assets/income.svg" alt="Imagem de entradas">
                 </h3>
                 <p id="incomeDisplay">R$ 00,00</p>
             </div>
-            <div class="card">
+            <div class="card" value="expense" onclick="Modal.divOpenAndClose(this)">
                 <h3>
                     <span>Saídas</span>
                     <img src="./assets/expense.svg" alt="Imagem de saidas">
@@ -47,11 +47,11 @@
         <section id="transaction">
             <h2 class="sr-only">Transações</h2>
 
-            <a 
+            <!-- <a 
                 href="#" 
                 onclick="Modal.openAndClose()"
                 class="button new"
-            > + Nova Transação</a>
+            > + Nova Transação</a> -->
 
             <table id="data-table">
                 <thead>
@@ -72,8 +72,11 @@
     <div class="modal-overlay ">
         <div class="modal">
             <div class="form">
+                <h1 id="titleDiv"></h1>
                 <h2>Nova Transação</h2>
                 <form action="" onsubmit="Form.submit(event)">
+                    <input type='hidden' id='typeInput' name='typeInput' value='expense'>
+                    
                     <div class="input-group">
                         <label 
                             class="sr-only"
@@ -102,7 +105,7 @@
                     </div>
 
                     <div class="input-group">
-                        <h3>Insira sua data de nascimento</h3>
+                        <h3>Insira a data da Entrada/Saída</h3>
 
                         <div class="input-group date-input">
                             <i class="material-icons dateIcon">date_range</i>
