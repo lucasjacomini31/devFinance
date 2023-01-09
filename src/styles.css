@@ -316,3 +316,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
     
 }
+
+@media (max-width: 385px){
+    table{
+        overflow: hidden;
+    }
+
+    table td{
+        padding: 2px;
+        justify-content: center;
+    }
+}
